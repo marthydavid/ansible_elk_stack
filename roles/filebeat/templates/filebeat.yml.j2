@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 ###################### Filebeat Configuration Example #########################
 
 # This file is an example configuration file highlighting only the most common
@@ -120,7 +121,7 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  #host: "localhost:5601"
+  host: {{ beats_kibana_url }}
 
 #============================= Elastic Cloud ==================================
 
@@ -142,7 +143,7 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
 output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["localhost:9200"]
+  hosts: [{{ beats_elasticsearch_url }}]
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
@@ -168,7 +169,7 @@ output.elasticsearch:
 
 # Sets log level. The default log level is info.
 # Available log levels are: critical, error, warning, info, debug
-#logging.level: debug
+logging.level: {{ beats_log_level }}
 
 # At debug level, you can selectively enable logging only for some components.
 # To enable all selectors use ["*"]. Examples of other selectors are "beat",

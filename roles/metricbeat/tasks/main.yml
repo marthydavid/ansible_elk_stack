@@ -11,3 +11,23 @@
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no 
+
+- name: Install Metricbeat
+  package:
+    name: metricbeat
+    state: present
+
+- name: Start Metricbeat
+  systemd: 
+    name: metricbeat
+    state: started
+    enabled: yes
+
+- name: Configure Metricbeat
+  template:
+    src: metricbeat.yml.j2
+    dest: /etc/metricbeat/metricbeat.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart metricbeat

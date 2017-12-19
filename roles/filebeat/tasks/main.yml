@@ -11,3 +11,23 @@
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no 
+
+- name: Install Filebeat
+  package:
+    name: filebeat
+    state: present
+
+- name: Start Filebeat
+  systemd: 
+    name: filebeat
+    state: started
+    enabled: yes
+
+- name: Configure Filebeat
+  template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart filebeat
