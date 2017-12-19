@@ -2,4 +2,4 @@
 # defaults file for packetbeat
 beats_kibana_url: "http://localhost:5601"
 beats_elasticsearch_url: "http://localhost:9200"
-beats_loggin_leve: debug
+beats_logging_level: debug
