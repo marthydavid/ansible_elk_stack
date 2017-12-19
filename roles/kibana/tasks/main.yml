@@ -11,3 +11,24 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no 
+
+- name: Install Kibana package
+  package:
+    name: kibana
+    state: present
+
+- name: Start and enable Kibana 
+  systemd:
+    name: kibana
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Copy Kibana config file
+  template:
+    src: kibana.yml.j2
+    dest: "/etc/kibana/kibana.yml"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart kibana

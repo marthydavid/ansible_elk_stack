@@ -11,3 +11,32 @@
 - include: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no 
+
+- name: Install ElasticSearch
+  package: 
+    name: '{{ item.name }}'
+    state: '{{ item.state }}'
+  with_items: '{{ packages }}'
+
+- name: Configure Elasticsearch.
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: elasticsearch
+    mode: 0750
+  notify: restart elasticsearch
+
+- name: Start Elasticsearch.
+  systemd: 
+    name: elasticsearch 
+    state: started 
+    daemon_reload: yes
+    enabled: yes
+
+- name: Make sure Elasticsearch is running before proceeding.
+  wait_for: 
+    host: {{ elasticsearch_network_host }} 
+    port: {{ elasticsearch_http_port }} 
+    delay: 3 
+    timeout: 300
