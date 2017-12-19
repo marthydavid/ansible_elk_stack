@@ -11,6 +11,32 @@
 # For more available modules and options, please see the filebeat.reference.yml sample
 # configuration file.
 
+#------------------------------- Apache2 Module ------------------------------
+- module: apache2
+  # Access logs
+  access:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+    # Prospector configuration (advanced). Any prospector configuration option
+    # can be added under this section.
+    #prospector:
+
+  # Error logs
+  error:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+    # Prospector configuration (advanced). Any prospector configuration option
+    # can be added under this section.
+    #prospector:
+
 #=========================== Filebeat prospectors =============================
 
 filebeat.prospectors:
