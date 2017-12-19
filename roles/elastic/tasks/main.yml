@@ -18,7 +18,7 @@
     state: '{{ item.state }}'
   with_items: '{{ packages }}'
 
-- name: Configure Elasticsearch.
+- name: Configure Elasticsearch
   template:
     src: elasticsearch.yml.j2
     dest: /etc/elasticsearch/elasticsearch.yml
@@ -27,14 +27,13 @@
     mode: 0750
   notify: restart elasticsearch
 
-- name: Start Elasticsearch.
+- name: Start Elasticsearch
   systemd: 
     name: elasticsearch 
-    state: started 
-    daemon_reload: yes
+    state: started
     enabled: yes
 
-- name: Make sure Elasticsearch is running before proceeding.
+- name: Make sure Elasticsearch is running before proceeding
   wait_for: 
     host: '{{ elasticsearch_network_host }}' 
     port: '{{ elasticsearch_http_port }}' 

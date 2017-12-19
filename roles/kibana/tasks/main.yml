@@ -22,7 +22,6 @@
     name: kibana
     state: started
     enabled: yes
-    daemon_reload: yes
 
 - name: Copy Kibana config file
   template:
