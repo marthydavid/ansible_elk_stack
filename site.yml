@@ -1,0 +1,5 @@
+- hosts: poc-elk
+  roles:
+    - {role: geerlingguy.java}
+    - {role: elastic}
+    
