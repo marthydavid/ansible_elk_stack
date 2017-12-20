@@ -32,5 +32,14 @@
     mode: 0750
   notify: restart metricbeat
 
+- name: Setup PostgresSQL module
+  template:
+    src: postgresql.yml.j2
+    dest: /etc/metricbeat/modules.d/postgresql.yml
+    owner: root
+    group: root
+    mode: 0750
+  when: beats_pgsql_module_setup == 'true'
+
 - name: Import Dashboard
   command: metricbeat setup --dashboards

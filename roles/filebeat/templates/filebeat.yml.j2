@@ -11,11 +11,11 @@
 # For more available modules and options, please see the filebeat.reference.yml sample
 # configuration file.
 #=========================== Filebeat modules =============================
-filebeat.modules:
+#filebeat.modules:
 #- module: nginx
 #- module: mysql
 #- module: apache2
-- module: system
+#- module: system
 #=========================== Filebeat prospectors =============================
 
 filebeat.prospectors:
@@ -76,10 +76,10 @@ filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
 
   # Set to true to enable config reloading
-  reload.enabled: false
+  reload.enabled: true
 
   # Period on which files under path should be checked for changes
-  #reload.period: 10s
+  reload.period: 10s
 
 #==================== Elasticsearch template setting ==========================
 
