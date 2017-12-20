@@ -33,4 +33,34 @@
     mode: 0750
   notify: restart filebeat
 
-    
+- name: Setup PostgreSQL module
+  template:
+    src: postgresql.yml.j2
+    dest: /etc/filebeat/modules.d/postgresql.yml
+    owner: root
+    group: root
+    mode: 0750
+  when: beats_pgsql_module_setup == 'true'
+  notify: restart filebeat
+
+- name: Trun on PostgreSQL module
+  file:
+    path: /etc/filebeat/modules.d/postgresql.yml.disabled
+    state: absent
+  when: beats_pgsql_module_setup == 'true'
+
+- name: Setup Apache module
+  template:
+    src: apache.yml.j2
+    dest: /etc/filebeat/modules.d/apache.yml
+    owner: root
+    group: root
+    mode: 0750
+  when: beats_apache_module_setup == 'true'
+  notify: restart filebeat
+
+- name: Trun on Apache module
+  file:
+    path: /etc/filebeat/modules.d/apache.yml.disabled
+    state: absent
+  when: beats_apache_module_setup == 'true'
