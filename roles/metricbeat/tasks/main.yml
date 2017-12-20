@@ -33,6 +33,4 @@
   notify: restart metricbeat
 
 - name: Import Dashboard
-  command: > 
-    ./bin/metricbeat setup --dashboards
-    chdir=/usr/share/metricbeat
+  command: metricbeat setup --dashboards

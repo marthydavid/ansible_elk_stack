@@ -33,7 +33,6 @@
   notify: restart filebeat
 
 - name: Import Dashboard
-  command: > 
-    ./bin/filebeat setup --dashboards
-    chdir=/usr/share/filebeat
+  command: filebeat setup --dashboards
+
     
