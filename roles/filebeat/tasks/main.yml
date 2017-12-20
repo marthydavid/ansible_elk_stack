@@ -31,3 +31,9 @@
     group: root
     mode: 0750
   notify: restart filebeat
+
+- name: Import Dashboard
+  command: > 
+    ./bin/filebeat setup --dashboards
+    chdir=/usr/share/filebeat
+    

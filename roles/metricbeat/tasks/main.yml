@@ -31,3 +31,8 @@
     group: root
     mode: 0750
   notify: restart metricbeat
+
+- name: Import Dashboard
+  command: > 
+    ./bin/metricbeat setup --dashboards
+    chdir=/usr/share/metricbeat

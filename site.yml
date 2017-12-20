@@ -1,5 +1,9 @@
 - hosts: poc-elk
+  become: true
   roles:
     - {role: geerlingguy.java}
     - {role: elastic}
-    
+    - {role: kibana}
+    - {role: filebeat}
+    - {role: metricbeat}
+    - {role: packetbeat}
