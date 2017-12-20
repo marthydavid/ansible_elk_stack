@@ -49,18 +49,18 @@
     state: absent
   when: beats_pgsql_module_setup == 'true'
 
-- name: Setup Apache module
+- name: Setup System module
   template:
-    src: apache.yml.j2
-    dest: /etc/filebeat/modules.d/apache.yml
+    src: system.yml.j2
+    dest: /etc/filebeat/modules.d/system.yml
     owner: root
     group: root
     mode: 0750
   when: beats_apache_module_setup == 'true'
   notify: restart filebeat
 
-- name: Trun on Apache module
+- name: Trun on System module
   file:
-    path: /etc/filebeat/modules.d/apache.yml.disabled
+    path: /etc/filebeat/modules.d/system.yml.disabled
     state: absent
   when: beats_apache_module_setup == 'true'
