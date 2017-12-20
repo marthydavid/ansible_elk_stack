@@ -19,7 +19,7 @@
   notify: Import Dashboard
 
 - name: Start Metricbeat
-  systemd: 
+  service: 
     name: metricbeat
     state: started
     enabled: yes

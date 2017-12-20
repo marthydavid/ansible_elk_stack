@@ -18,7 +18,7 @@
     state: present
 
 - name: Start and enable Kibana 
-  systemd:
+  service:
     name: kibana
     state: started
     enabled: yes

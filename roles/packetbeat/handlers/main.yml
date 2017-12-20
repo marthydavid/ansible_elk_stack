@@ -1,7 +1,7 @@
 ---
 # handlers file for packetbeat
 - name: restart packetbeat
-  systemd:
+  service:
     name: packetbeat
     state: restarted
 

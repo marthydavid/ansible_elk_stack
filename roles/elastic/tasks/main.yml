@@ -28,7 +28,7 @@
   notify: restart elasticsearch
 
 - name: Start Elasticsearch
-  systemd: 
+  service: 
     name: elasticsearch 
     state: started
     enabled: yes

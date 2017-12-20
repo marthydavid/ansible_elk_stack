@@ -19,7 +19,7 @@
   notify: Import Dashboard
 
 - name: Start Filebeat
-  systemd: 
+  service: 
     name: filebeat
     state: started
     enabled: yes
