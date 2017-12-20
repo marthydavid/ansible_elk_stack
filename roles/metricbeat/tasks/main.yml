@@ -16,6 +16,7 @@
   package:
     name: metricbeat
     state: present
+  notify: Import Dashboard
 
 - name: Start Metricbeat
   systemd: 
@@ -64,5 +65,3 @@
     state: absent
   when: beats_apache_module_setup == 'true'
 
-- name: Import Dashboard
-  command: metricbeat setup --dashboards

@@ -16,6 +16,7 @@
   package:
     name: filebeat
     state: present
+  notify: Import Dashboard
 
 - name: Start Filebeat
   systemd: 
@@ -31,8 +32,5 @@
     group: root
     mode: 0750
   notify: restart filebeat
-
-- name: Import Dashboard
-  command: filebeat setup --dashboards
 
     

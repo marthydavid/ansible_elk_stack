@@ -16,6 +16,7 @@
   package:
     name: packetbeat
     state: present
+  notify: Import Dashboard
 
 - name: Start Packetbeat
   systemd: 
@@ -31,6 +32,3 @@
     group: root
     mode: 0750
   notify: restart packetbeat
-
-- name: Import Dashboard
-  command: packetbeat setup --dashboards
