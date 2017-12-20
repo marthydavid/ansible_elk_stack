@@ -22,16 +22,16 @@
   hosts: ["{{ beats_pgsql_module_hosts }}"]
   # Username to use when connecting to PostgreSQL. Empty by default.
   {% if beats_pgsql_module_user != '' %}
-    {% set beats_pgsql_module_user_line = #username: user %}
+    {% set beats_pgsql_module_user_line = "#username: user" %}
   {% else  %}
-    {% set beats_pgsql_module_user_line = username: beats_pgsql_module_user %}
+    {% set beats_pgsql_module_user_line = "username: {{ beats_pgsql_module_user }}" %}
   {% endif %}
   {{ beats_pgsql_module_user_line }}
 
   # Password to use when connecting to PostgreSQL. Empty by default.
   {% if beats_pgsql_module_pass != '' %}
-    {% set beats_pgsql_module_pass_line = #password: pass %}
+    {% set beats_pgsql_module_pass_line = "#password: pass" %}
   {% else  %}
-    {% set beats_pgsql_module_pass_line = username: beats_pgsql_module_pass %}
+    {% set beats_pgsql_module_pass_line = "username: {{ beats_pgsql_module_pass }}" %}
   {% endif %}
   {{ beats_pgsql_module_pass_line }}
