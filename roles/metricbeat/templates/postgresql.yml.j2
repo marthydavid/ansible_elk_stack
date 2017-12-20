@@ -16,21 +16,8 @@
   # postgres://localhost:5432?sslmode=disable
   # The available parameters are documented here:
   # https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
-  {% if beats_pgsql_module_hosts  %}
-  {% else %}
-    {% set beats_pgsql_module_hosts = 'postgres://localhost:5432' %}
-  {% endif %}
   hosts: ["{{ beats_pgsql_module_hosts }}"]
   # Username to use when connecting to PostgreSQL. Empty by default.
-  {% if beats_pgsql_module_user == "" %}
-  #username: user
-  {% else  %}
   username: {{ beats_pgsql_module_user }}
-  {% endif %}
-
   # Password to use when connecting to PostgreSQL. Empty by default.
-  {% if beats_pgsql_module_pass == "" %}
-  #password: pass
-  {% else  %}
   password: {{ beats_pgsql_module_pass }}
-  {% endif %}
