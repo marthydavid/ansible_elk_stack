@@ -7,3 +7,4 @@ beats_pgsql_module_setup: false
 beats_pgsql_module_hosts: ''
 beats_pgsql_module_user: ''
 beats_pgsql_module_pass: ''
+beats_apache_module_setup: false
