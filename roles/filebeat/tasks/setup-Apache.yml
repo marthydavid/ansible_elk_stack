@@ -1,0 +1,13 @@
+- name: Setup System module
+  template:
+    src: apache2.yml.j2
+    dest: /etc/filebeat/modules.d/apache2.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart filebeat
+
+- name: Trun on System module
+  file:
+    path: /etc/filebeat/modules.d/apache2.yml.disabled
+    state: absent
