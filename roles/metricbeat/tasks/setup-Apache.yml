@@ -7,7 +7,7 @@
     mode: 0750
   notify: restart metricbeat
 
-- name: Trun on Apache module
+- name: Turn on Apache module
   file:
     path: /etc/metricbeat/modules.d/apache.yml.disabled
     state: absent

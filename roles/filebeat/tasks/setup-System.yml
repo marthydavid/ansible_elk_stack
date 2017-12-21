@@ -7,7 +7,7 @@
     mode: 0750
   notify: restart filebeat
 
-- name: Trun on System module
+- name: Turn on System module
   file:
     path: /etc/filebeat/modules.d/system.yml.disabled
     state: absent

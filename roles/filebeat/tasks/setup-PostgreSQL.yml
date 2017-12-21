@@ -7,7 +7,7 @@
     mode: 0750
   notify: restart filebeat
 
-- name: Trun on PostgreSQL module
+- name: Turn on PostgreSQL module
   file:
     path: /etc/filebeat/modules.d/postgresql.yml.disabled
     state: absent
