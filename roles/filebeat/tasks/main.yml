@@ -56,11 +56,11 @@
     owner: root
     group: root
     mode: 0750
-  when: beats_apache_module_setup == 'true'
+  when: beats_system_module_setup == 'true'
   notify: restart filebeat
 
 - name: Trun on System module
   file:
     path: /etc/filebeat/modules.d/system.yml.disabled
     state: absent
-  when: beats_apache_module_setup == 'true'
+  when: beats_system_module_setup == 'true'

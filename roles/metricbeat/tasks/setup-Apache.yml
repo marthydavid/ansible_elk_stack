@@ -1,0 +1,13 @@
+- name: Setup Apache module
+  template:
+    src: apache.yml.j2
+    dest: /etc/metricbeat/modules.d/apache.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart metricbeat
+
+- name: Trun on Apache module
+  file:
+    path: /etc/metricbeat/modules.d/apache.yml.disabled
+    state: absent

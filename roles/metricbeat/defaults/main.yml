@@ -8,3 +8,7 @@ beats_pgsql_module_hosts: ''
 beats_pgsql_module_user: ''
 beats_pgsql_module_pass: ''
 beats_apache_module_setup: false
+beats_mysql_module_hosts: ''
+beats_mysql_module_user: ''
+beats_mysql_module_pass: ''
+beats_mysql_module_raw: ''
