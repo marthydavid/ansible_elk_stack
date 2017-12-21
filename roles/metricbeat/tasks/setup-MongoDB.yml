@@ -1,0 +1,13 @@
+- name: Setup MongoDB module
+  template:
+    src: mongodb.yml.j2
+    dest: /etc/metricbeat/modules.d/mongodb.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart metricbeat
+
+- name: Turn on MongoDB module
+  file:
+    path: /etc/metricbeat/modules.d/mongodb.yml.disabled
+    state: absent
