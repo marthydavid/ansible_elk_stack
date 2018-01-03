@@ -1,0 +1,28 @@
+---
+# tasks file for winlogbeat
+
+- include_tasks: setup-System.yml
+  when: ansible_os_family == 'Windows'
+  static: no
+
+
+
+- name: Install winlogbeat
+  win_get_url:  
+    url: '{{ winlogbeat_download_link }}'
+    dest: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
+
+- name: Start winlogbeat
+  service: 
+    name: winlogbeat
+    state: started
+    enabled: yes
+
+- name: Configure winlogbeat
+  template:
+    src: winlogbeat.yml.j2
+    dest: /etc/winlogbeat/winlogbeat.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart winlogbeat

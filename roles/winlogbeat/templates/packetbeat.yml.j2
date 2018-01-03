@@ -1,86 +1,103 @@
 # {{ ansible_managed }}
-###################### Filebeat Configuration Example #########################
+#################### Packetbeat Configuration Example #########################
 
 # This file is an example configuration file highlighting only the most common
-# options. The filebeat.reference.yml file from the same directory contains all the
+# options. The packetbeat.reference.yml file from the same directory contains all the
 # supported options with more comments. You can use it as a reference.
 #
 # You can find the full configuration reference here:
-# https://www.elastic.co/guide/en/beats/filebeat/index.html
+# https://www.elastic.co/guide/en/beats/packetbeat/index.html
 
-# For more available modules and options, please see the filebeat.reference.yml sample
-# configuration file.
-#=========================== Filebeat modules =============================
-#filebeat.modules:
-#- module: nginx
-#- module: mysql
-#- module: apache2
-#- module: system
-#=========================== Filebeat prospectors =============================
+#============================== Network device ================================
 
-filebeat.prospectors:
+# Select the network interface to sniff the data. On Linux, you can use the
+# "any" keyword to sniff on all connected interfaces.
+packetbeat.interfaces.device: any
 
-# Each - is a prospector. Most options can be set at the prospector level, so
-# you can use different prospectors for various configurations.
-# Below are the prospector specific configurations.
+#================================== Flows =====================================
 
-- type: log
+# Set `enabled: false` or comment out all options to disable flows reporting.
+packetbeat.flows:
+  # Set network flow timeout. Flow is killed if no packet is received before being
+  # timed out.
+  timeout: 30s
 
-  # Change to true to enable this prospector configuration.
+  # Configure reporting period. If set to -1, only killed flows will be reported
+  period: 10s
+
+#========================== Transaction protocols =============================
+
+packetbeat.protocols:
+- type: icmp
+  # Enable ICMPv4 and ICMPv6 monitoring. Default: false
   enabled: true
 
-  # Paths that should be crawled and fetched. Glob based paths.
-  paths:
-    - /var/log/*.log
-    - /var/log/*/*.log
-    #- c:\programdata\elasticsearch\logs\*
+- type: amqp
+  # Configure the ports where to listen for AMQP traffic. You can disable
+  # the AMQP protocol by commenting out the list of ports.
+  ports: [5672]
 
-  # Exclude lines. A list of regular expressions to match. It drops the lines that are
-  # matching any regular expression from the list.
-  #exclude_lines: ['^DBG']
+- type: cassandra
+  #Cassandra port for traffic monitoring.
+  ports: [9042]
 
-  # Include lines. A list of regular expressions to match. It exports the lines that are
-  # matching any regular expression from the list.
-  #include_lines: ['^ERR', '^WARN']
+- type: dns
+  # Configure the ports where to listen for DNS traffic. You can disable
+  # the DNS protocol by commenting out the list of ports.
+  ports: [53]
 
-  # Exclude files. A list of regular expressions to match. Filebeat drops the files that
-  # are matching any regular expression from the list. By default, no files are dropped.
-  #exclude_files: ['.gz$']
+  # include_authorities controls whether or not the dns.authorities field
+  # (authority resource records) is added to messages.
+  include_authorities: true
 
-  # Optional additional fields. These fields can be freely picked
-  # to add additional information to the crawled log files for filtering
-  #fields:
-  #  level: debug
-  #  review: 1
+  # include_additionals controls whether or not the dns.additionals field
+  # (additional resource records) is added to messages.
+  include_additionals: true
 
-  ### Multiline options
+- type: http
+  # Configure the ports where to listen for HTTP traffic. You can disable
+  # the HTTP protocol by commenting out the list of ports.
+  ports: [80, 8080, 8000, 5000, 8002]
 
-  # Mutiline can be used for log messages spanning multiple lines. This is common
-  # for Java Stack Traces or C-Line Continuation
+- type: memcache
+  # Configure the ports where to listen for memcache traffic. You can disable
+  # the Memcache protocol by commenting out the list of ports.
+  ports: [11211]
 
-  # The regexp Pattern that has to be matched. The example pattern matches all lines starting with [
-  #multiline.pattern: ^\[
+- type: mysql
+  # Configure the ports where to listen for MySQL traffic. You can disable
+  # the MySQL protocol by commenting out the list of ports.
+  ports: [3306]
 
-  # Defines if the pattern set under pattern should be negated or not. Default is false.
-  #multiline.negate: false
+- type: pgsql
+  # Configure the ports where to listen for Pgsql traffic. You can disable
+  # the Pgsql protocol by commenting out the list of ports.
+  ports: [5432]
 
-  # Match can be set to "after" or "before". It is used to define if lines should be append to a pattern
-  # that was (not) matched before or after or as long as a pattern is not matched based on negate.
-  # Note: After is the equivalent to previous and before is the equivalent to to next in Logstash
-  #multiline.match: after
+- type: redis
+  # Configure the ports where to listen for Redis traffic. You can disable
+  # the Redis protocol by commenting out the list of ports.
+  ports: [6379]
 
+- type: thrift
+  # Configure the ports where to listen for Thrift-RPC traffic. You can disable
+  # the Thrift-RPC protocol by commenting out the list of ports.
+  ports: [9090]
 
-#============================= Filebeat modules ===============================
+- type: mongodb
+  # Configure the ports where to listen for MongoDB traffic. You can disable
+  # the MongoDB protocol by commenting out the list of ports.
+  ports: [27017]
 
-filebeat.config.modules:
-  # Glob pattern for configuration loading
-  path: ${path.config}/modules.d/*.yml
+- type: nfs
+  # Configure the ports where to listen for NFS traffic. You can disable
+  # the NFS protocol by commenting out the list of ports.
+  ports: [2049]
 
-  # Set to true to enable config reloading
-  reload.enabled: true
-
-  # Period on which files under path should be checked for changes
-  reload.period: 10s
+- type: tls
+  # Configure the ports where to listen for TLS traffic. You can disable
+  # the TLS protocol by commenting out the list of ports.
+  ports: [443]
 
 #==================== Elasticsearch template setting ==========================
 
@@ -131,7 +148,7 @@ setup.kibana:
 
 #============================= Elastic Cloud ==================================
 
-# These settings simplify using filebeat with the Elastic Cloud (https://cloud.elastic.co/).
+# These settings simplify using packetbeat with the Elastic Cloud (https://cloud.elastic.co/).
 
 # The cloud.id setting overwrites the `output.elasticsearch.hosts` and
 # `setup.kibana.host` options.
