@@ -1,28 +1,46 @@
 ---
 # tasks file for winlogbeat
 
-- include_tasks: setup-System.yml
+#- include_tasks: setup-System.yml
+#  when: ansible_os_family == 'Windows'
+#  static: no
+
+- include_tasks: setup-PSCX.yml
   when: ansible_os_family == 'Windows'
   static: no
-
-
 
 - name: Install winlogbeat
   win_get_url:  
     url: '{{ winlogbeat_download_link }}'
-    dest: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
+    dest: C:\ansible_temp\winlogbeat-6.1.0-windows-x86_64.zip
 
-- name: Start winlogbeat
-  service: 
-    name: winlogbeat
-    state: started
-    enabled: yes
+- name: Stat Winlogbeat
+  win_stat:
+    path: C:\Program Files\Winlogbeat
+  register: dir_info
+
+- name: Create dir to Winlogbeat
+  win_file:
+    path: C:\Program Files\Winlogbeat\
+    state: directory
+  when: dir_info.stat.exists == True
+
+- name: Unzip winlogbeat
+  win_unzip:
+    src: C:\ansible_temp\winlogbeat-6.1.0-windows-x86_64.zip
+    dest: C:\Program Files\Winlogbeat\
 
 - name: Configure winlogbeat
   template:
     src: winlogbeat.yml.j2
-    dest: /etc/winlogbeat/winlogbeat.yml
+    dest: C:\Program Files\Winlogbeat\winlogbeat.yml
     owner: root
     group: root
     mode: 0750
   notify: restart winlogbeat
+
+- name: Start winlogbeat
+  win_service: 
+    name: winlogbeat
+    state: started
+    

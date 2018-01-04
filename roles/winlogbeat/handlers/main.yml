@@ -1,9 +1,9 @@
 ---
 # handlers file for packetbeat
 - name: restart packetbeat
-  service:
+  win_service:
     name: packetbeat
     state: restarted
 
 - name: Import Dashboard
-  command: packetbeat setup --dashboards
+  command: winlogbeat setup --dashboards
