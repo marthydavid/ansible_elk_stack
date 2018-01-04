@@ -25,7 +25,7 @@
     url: '{{ winlogbeat_download_link }}'
     dest: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
     force: no
-    
+
 - name: Stat Winlogbeat
   win_stat:
     path: C:\Program Files\Winlogbeat
@@ -67,7 +67,7 @@
 #  notify: restart winlogbeat
 
 - name: Install winlogbeat as a Service
-  win_shell: "C:\\install-service-winlogbeat.ps1"
+  win_shell: install-service-winlogbeat.ps1
   args:
     chdir: "C:\\Program Files\\Winlogbeat\\"
 
