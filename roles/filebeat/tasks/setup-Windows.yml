@@ -67,3 +67,8 @@
     name: "{{ filebeat_service_name }}"
     path: "{{ filebeat_binaryPath }}"
     description: "{{ filebeat_service_name }}"
+
+- name: Start Filebeat
+  win_service: 
+    name: filebeat
+    state: started

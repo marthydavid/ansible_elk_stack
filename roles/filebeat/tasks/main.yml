@@ -28,6 +28,7 @@
     name: filebeat
     state: started
     enabled: yes
+  when: ansible_os_family != 'Windows'
   
 - name: Configure Filebeat
   template:
