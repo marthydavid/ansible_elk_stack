@@ -24,7 +24,7 @@
   win_get_url:  
     url: '{{ winlogbeat_download_link }}'
     dest: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
-
+    force: no
 - name: Stat Winlogbeat
   win_stat:
     path: C:\Program Files\Winlogbeat
