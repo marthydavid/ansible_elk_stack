@@ -53,8 +53,8 @@
 
 - name: Install winlogbeat as a Service
   win_shell: .\install-service-winlogbeat.ps1
-    args:
-      chdir: C:\Program Files\Winlogbeat\
+  args:
+    chdir: C:\Program Files\Winlogbeat\
 
 - name: Start winlogbeat
   win_service: 
