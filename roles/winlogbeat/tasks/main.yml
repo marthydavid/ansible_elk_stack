@@ -46,9 +46,6 @@
   win_template:
     src: winlogbeat.yml.j2
     dest: C:\Program Files\Winlogbeat\winlogbeat.yml
-    owner: root
-    group: root
-    mode: 0750
   notify: restart winlogbeat
 
 - name: Install winlogbeat as a Service
