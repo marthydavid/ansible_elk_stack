@@ -36,16 +36,28 @@
     state: directory
   when: dir_info.stat.exists == False
 
+- name: Stat Winlogbeat
+  win_stat:
+    path: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64\
+  register: unzip_info
+
 - name: Unzip winlogbeat
   win_unzip:
     src: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
     dest: C:\ansible_temp\
+  when: unzip_info.stat.exists == False
+
+- name: Stat Winlogbeat
+  win_stat:
+    path: C:\Program Files\Winlogbeat\winlogbeat.exe
+  register: exe_info
 
 - name: Move winlogbeat
   win_copy:
     src: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64\
     dest: C:\Program Files\Winlogbeat\
     remote_src: True
+  when: exe_info.stat.exists == False
 
 - name: Configure winlogbeat
   win_template:
@@ -56,10 +68,9 @@
 - name: Install winlogbeat as a Service
   win_shell: "C:\\install-service-winlogbeat.ps1"
   args:
-    chdir: "C:\\Program Files\\Winlogbeat\\""
+    chdir: "C:\\Program Files\\Winlogbeat\\"
 
 - name: Start winlogbeat
   win_service: 
     name: winlogbeat
-    state: started
-    
+    state: started  
