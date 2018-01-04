@@ -46,7 +46,7 @@
   win_template:
     src: winlogbeat.yml.j2
     dest: C:\Program Files\Winlogbeat\winlogbeat.yml
-  notify: restart winlogbeat
+#  notify: restart winlogbeat
 
 - name: Install winlogbeat as a Service
   win_shell: .\install-service-winlogbeat.ps1

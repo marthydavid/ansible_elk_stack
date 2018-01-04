@@ -1,8 +1,8 @@
 ---
 # handlers file for packetbeat
-- name: restart packetbeat
+- name: restart winlogbeat
   win_service:
-    name: packetbeat
+    name: winlogbeat
     state: restarted
 
 - name: Import Dashboard
