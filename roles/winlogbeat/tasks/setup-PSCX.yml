@@ -5,5 +5,5 @@
     dest: C:\Windows\Temp\pscx.msi
 
 - name: Install PSCX
-  win_msi:
+  win_package:
     path: C:\Windows\Temp\pscx.msi
