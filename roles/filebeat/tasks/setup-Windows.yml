@@ -24,12 +24,12 @@
 
 - name: Stat filebeat
   win_stat:
-    path: '{{ install_dir }}'
+    path: '{{ filebeat_install_dir }}'
   register: dir_info
 
 - name: Create dir to filebeat
   win_file:
-    path: '{{ install_dir }}\'
+    path: '{{ filebeat_install_dir }}\'
     state: directory
   when: dir_info.stat.exists == False
 
@@ -46,20 +46,20 @@
 
 - name: Stat filebeat
   win_stat:
-    path: '{{ install_dir }}\filebeat.exe'
+    path: '{{ filebeat_install_dir }}\filebeat.exe'
   register: exe_info
 
 - name: Move filebeat
   win_copy:
     src: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64\
-    dest: '{{ install_dir }}\'
+    dest: '{{ filebeat_install_dir }}\'
     remote_src: True
   when: exe_info.stat.exists == False
 
 - name: Configure filebeat
   win_template:
     src: filebeat.yml.j2
-    dest: '{{ install_dir }}\filebeat.yml'
+    dest: '{{ filebeat_install_dir }}\filebeat.yml'
 #  notify: restart filebeat
 
 - name: Create filebeat Service
