@@ -9,6 +9,17 @@
   when: ansible_os_family == 'Windows'
   static: no
 
+- name: Stat ansible_temp
+  win_stat:
+    path: C:\ansible_temp
+  register: temp_info
+
+- name: Create ansible_temp folder
+  win_file:
+    path: C:\ansible_temp
+    state: directory
+  when: temp_info.stat.exists == True
+
 - name: Install winlogbeat
   win_get_url:  
     url: '{{ winlogbeat_download_link }}'
