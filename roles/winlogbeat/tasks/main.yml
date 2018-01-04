@@ -18,7 +18,7 @@
   win_file:
     path: C:\ansible_temp
     state: directory
-  when: temp_info.stat.exists == True
+  when: temp_info.stat.exists == False
 
 - name: Install winlogbeat
   win_get_url:  
@@ -34,7 +34,7 @@
   win_file:
     path: C:\Program Files\Winlogbeat\
     state: directory
-  when: dir_info.stat.exists == True
+  when: dir_info.stat.exists == False
 
 - name: Unzip winlogbeat
   win_unzip:
