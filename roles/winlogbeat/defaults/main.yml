@@ -3,4 +3,4 @@
 beats_kibana_url: "http://localhost:5601"
 beats_elasticsearch_url: "http://localhost:9200"
 beats_logging_level: debug
-winlogbeat_download_link: "https://artifacts.elastic.co/downloads/beats/winlogbeat/winlogbeat-6.1.0-windows-x86_64.zip"
+winlogbeat_download_link: "https://artifacts.elastic.co/downloads/beats/winlogbeat/winlogbeat-6.1.1-windows-x86_64.zip"

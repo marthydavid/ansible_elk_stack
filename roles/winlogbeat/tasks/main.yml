@@ -23,7 +23,7 @@
 - name: Download winlogbeat
   win_get_url:  
     url: '{{ winlogbeat_download_link }}'
-    dest: C:\ansible_temp\winlogbeat-6.1.0-windows-x86_64.zip
+    dest: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
 
 - name: Stat Winlogbeat
   win_stat:
@@ -38,9 +38,14 @@
 
 - name: Unzip winlogbeat
   win_unzip:
-    src: C:\ansible_temp\winlogbeat-6.1.0-windows-x86_64.zip
+    src: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64.zip
+    dest: C:\ansible_temp\
+
+- name: Move winlogbeat
+  win_copy:
+    src: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64\
     dest: C:\Program Files\Winlogbeat\
-    recurse: yes
+    remote_src: True
 
 - name: Configure winlogbeat
   win_template:
@@ -49,7 +54,7 @@
 #  notify: restart winlogbeat
 
 - name: Install winlogbeat as a Service
-  win_shell: .\install-service-winlogbeat.ps1
+  win_shell: C:\Program Files\Winlogbeat\install-service-winlogbeat.ps1
   args:
     chdir: C:\Program Files\Winlogbeat\
 
