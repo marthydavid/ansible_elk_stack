@@ -54,7 +54,9 @@
 #  notify: restart winlogbeat
 
 - name: Install winlogbeat as a Service
-  win_shell: "C:\\Program Files\\Winlogbeat\\install-service-winlogbeat.ps1"
+  win_shell: "C:\\install-service-winlogbeat.ps1"
+  args:
+    chdir: "C:\\Program Files\\Winlogbeat\\""
 
 - name: Start winlogbeat
   win_service: 
