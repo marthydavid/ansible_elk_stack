@@ -1,9 +1,5 @@
 ---
 # defaults file for filebeat
-install_dir: C:\Program Files\filebeat
 beats_kibana_url: "http://localhost:5601"
 beats_elasticsearch_url: "http://localhost:9200"
 beats_logging_level: debug
-filebeat_download_link: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.1.1-windows-x86_64.zip
-filebeat_service_name: filebeat
-filebeat_binaryPath: '"{{ install_dir }}/filebeat.exe" -c "{{ install_dir }}/filebeat.yml" -path.home "{{ install_dir }}" -path.data "C:\\ProgramData\\filebeat" -path.logs "C:\\ProgramData\\filebeat\logs"'
