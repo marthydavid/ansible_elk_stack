@@ -1,9 +1,9 @@
 ---
 # tasks file for filebeat
 
-- include_tasks: setup-PSCX.yml
-  when: ansible_os_family == 'Windows'
-  static: no
+#- include_tasks: setup-PSCX.yml
+#  when: ansible_os_family == 'Windows'
+#  static: no
 
 - name: Stat ansible_temp
   win_stat:
