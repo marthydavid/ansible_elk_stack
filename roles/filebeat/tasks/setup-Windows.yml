@@ -1,0 +1,69 @@
+---
+# tasks file for filebeat
+
+- include_tasks: setup-PSCX.yml
+  when: ansible_os_family == 'Windows'
+  static: no
+
+- name: Stat ansible_temp
+  win_stat:
+    path: C:\Windows\Temp
+  register: temp_info
+
+- name: Create ansible_temp folder
+  win_file:
+    path: C:\Windows\Temp
+    state: directory
+  when: temp_info.stat.exists == False
+
+- name: Download filebeat
+  win_get_url:  
+    url: '{{ filebeat_download_link }}'
+    dest: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64.zip
+    force: no
+
+- name: Stat filebeat
+  win_stat:
+    path: '{{ install_dir }}'
+  register: dir_info
+
+- name: Create dir to filebeat
+  win_file:
+    path: '{{ install_dir }}\'
+    state: directory
+  when: dir_info.stat.exists == False
+
+- name: Stat filebeat
+  win_stat:
+    path: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64\
+  register: unzip_info
+
+- name: Unzip filebeat
+  win_unzip:
+    src: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64.zip
+    dest: C:\Windows\Temp\
+  when: unzip_info.stat.exists == False
+
+- name: Stat filebeat
+  win_stat:
+    path: '{{ install_dir }}\filebeat.exe'
+  register: exe_info
+
+- name: Move filebeat
+  win_copy:
+    src: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64\
+    dest: '{{ install_dir }}\'
+    remote_src: True
+  when: exe_info.stat.exists == False
+
+- name: Configure filebeat
+  win_template:
+    src: filebeat.yml.j2
+    dest: '{{ install_dir }}\filebeat.yml'
+#  notify: restart filebeat
+
+- name: Create filebeat Service
+  win_service:
+    name: "{{ filebeat_service_name }}"
+    path: "{{ filebeat_binaryPath }}"
+    description: "{{ filebeat_service_name }}"

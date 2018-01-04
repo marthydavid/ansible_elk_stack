@@ -12,18 +12,23 @@
   when: ansible_os_family == 'Debian'
   static: no 
 
+- include_tasks: setup-Windows.yml
+  when: ansible_os_family == 'Windows'
+  static: no 
+
 - name: Install Filebeat
   package:
     name: filebeat
     state: present
   notify: Import Dashboard
+  when: ansible_os_family != 'Windows'
 
 - name: Start Filebeat
   service: 
     name: filebeat
     state: started
     enabled: yes
-
+  
 - name: Configure Filebeat
   template:
     src: filebeat.yml.j2
@@ -32,6 +37,7 @@
     group: root
     mode: 0750
   notify: restart filebeat
+  when: ansible_os_family != 'Windows'
 
 - include_tasks: setup-Apache.yml
   when: beats_apache_module_setup is defined and beats_apache_module_setup == 'true'
