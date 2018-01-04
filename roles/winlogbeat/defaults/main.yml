@@ -6,4 +6,4 @@ beats_elasticsearch_url: "http://localhost:9200"
 beats_logging_level: debug
 winlogbeat_download_link: "https://artifacts.elastic.co/downloads/beats/winlogbeat/winlogbeat-6.1.1-windows-x86_64.zip"
 winlogbeat_service_name: winlogbeat
-winlogbeat_binaryPath: "`""{{install_dir}}"\\winlogbeat.exe`" -c `""{{install_dir}}"\\winlogbeat.yml`" -path.home `""{{install_dir}}"`" -path.data `"C:\\ProgramData\\winlogbeat`" -path.logs `"C:\\ProgramData\\winlogbeat\logs`""
+winlogbeat_binaryPath: """{{install_dir}}\winlogbeat.exe" -c "{{install_dir}}\winlogbeat.yml" -path.home "{{install_dir}}" -path.data "C:\\ProgramData\\winlogbeat" -path.logs "C:\\ProgramData\\winlogbeat\logs""
