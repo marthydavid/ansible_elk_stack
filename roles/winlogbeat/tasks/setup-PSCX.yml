@@ -7,4 +7,5 @@
 - name: Install PSCX
   win_package:
     path: C:\Windows\Temp\pscx.msi
+    arguments: /quiet
     state: present
