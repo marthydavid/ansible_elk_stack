@@ -1,0 +1,4 @@
+filebeat_install_dir: C:\Program Files\filebeat
+filebeat_download_link: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.1.1-windows-x86_64.zip
+filebeat_service_name: filebeat
+filebeat_binaryPath: '"{{ filebeat_install_dir }}/filebeat.exe" -c "{{ filebeat_install_dir }}/filebeat.yml" -path.home "{{ filebeat_install_dir }}" -path.data "C:\\ProgramData\\filebeat" -path.logs "C:\\ProgramData\\filebeat\logs"'

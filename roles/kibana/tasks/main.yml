@@ -4,10 +4,38 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- include: setup-RedHat.yml
+- include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
   static: no
 
-- include: setup-Debian.yml
+- include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
   static: no 
+
+- name: Install Kibana package
+  package:
+    name: kibana
+    state: present
+
+- name: Start and enable Kibana 
+  service:
+    name: kibana
+    state: started
+    enabled: yes
+
+- name: Copy Kibana config file
+  template:
+    src: kibana.yml.j2
+    dest: "/etc/kibana/kibana.yml"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart kibana
+
+
+- name: Make sure Kibana is running before proceeding.
+  wait_for: 
+    host: localhost
+    port: '{{ kibana_server_port }}' 
+    delay: 3 
+    timeout: 300

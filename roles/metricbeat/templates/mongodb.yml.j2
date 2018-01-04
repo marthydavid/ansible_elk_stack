@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+- module: mongodb
+  metricsets: ["dbstats", "status"]
+  period: 10s
+
+  # The hosts must be passed as MongoDB URLs in the format:
+  # [mongodb://][user:pass@]host[:port].
+  # The username and password can also be set using the respective configuration
+  # options. The credentials in the URL take precedence over the username and
+  # password configuration options.
+  hosts: ["{{beats_mongodb_module_hosts}}"]
+
+  # Username to use when connecting to MongoDB. Empty by default.
+  username: {{ beats_mongodb_module_user }}
+
+  # Password to use when connecting to MongoDB. Empty by default.
+  password: {{ beats_mongodb_module_pass}}

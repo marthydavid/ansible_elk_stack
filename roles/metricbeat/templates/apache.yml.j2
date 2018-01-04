@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+- module: apache
+  metricsets: ["status"]
+  period: 10s
+
+  # Apache hosts
+  hosts: ["{{beats_apache_module_hosts}}"]

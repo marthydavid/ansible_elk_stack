@@ -1,0 +1,13 @@
+- name: Setup MySQL module
+  template:
+    src: mysql.yml.j2
+    dest: /etc/metricbeat/modules.d/mysql.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart metricbeat
+
+- name: Turn on MySQL module
+  file:
+    path: /etc/metricbeat/modules.d/mysql.yml.disabled
+    state: absent

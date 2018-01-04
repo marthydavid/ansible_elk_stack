@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+- module: mysql
+  metricsets: ["status"]
+  period: 10s
+
+  # Host DSN should be defined as "user:pass@tcp(127.0.0.1:3306)/"
+  # The username and password can either be set in the DSN or using the username
+  # and password config options. Those specified in the DSN take precedence.
+
+  hosts: ["{{ beats_mysql_module_hosts }}"]
+
+  # Username of hosts. Empty by default.
+  username: {{ beats_mysql_module_user }}
+
+  # Password of hosts. Empty by default.
+  password: {{ beats_mysql_module_pass }}
+
+  # By setting raw to true, all raw fields from the status metricset will be added to the event.
+  raw: {{ beats_mysql_module_raw }}

@@ -4,10 +4,51 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- include: setup-RedHat.yml
+- include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
   static: no
 
-- include: setup-Debian.yml
+- include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
-  static: no 
+  static: no
+
+- name: Install Metricbeat
+  package:
+    name: metricbeat
+    state: present
+  notify: Import Dashboard
+
+- name: Start Metricbeat
+  service: 
+    name: metricbeat
+    state: started
+    enabled: yes
+
+- name: Configure Metricbeat
+  template:
+    src: metricbeat.yml.j2
+    dest: /etc/metricbeat/metricbeat.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart metricbeat
+
+- include_tasks: setup-PostgreSQL.yml
+  when: beats_pgsql_module_setup is defined and beats_pgsql_module_setup == 'true'
+  static: no
+
+- include_tasks: setup-Apache.yml
+  when: beats_apache_module_setup is defined and beats_apache_module_setup == 'true'
+  static: no
+
+- include_tasks: setup-MySQL.yml
+  when: beats_mysql_module_setup is defined and beats_mysql_module_setup == 'true'
+  static: no
+
+- include_tasks: setup-MongoDB.yml
+  when: beats_mongodb_module_setup == "true"
+  static: no
+
+- include_tasks: setup-System.yml
+  when: beats_system_module_setup is defined and beats_system_module_setup == 'true'
+  static: no

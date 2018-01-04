@@ -4,10 +4,31 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- include: setup-RedHat.yml
+- include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
   static: no
 
-- include: setup-Debian.yml
+- include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
-  static: no 
+  static: no
+
+- name: Install Packetbeat
+  package:
+    name: packetbeat
+    state: present
+  notify: Import Dashboard
+
+- name: Start Packetbeat
+  service: 
+    name: packetbeat
+    state: started
+    enabled: yes
+
+- name: Configure Packetbeat
+  template:
+    src: packetbeat.yml.j2
+    dest: /etc/packetbeat/packetbeat.yml
+    owner: root
+    group: root
+    mode: 0750
+  notify: restart packetbeat
