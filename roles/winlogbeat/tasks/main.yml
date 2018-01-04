@@ -28,12 +28,12 @@
 
 - name: Stat Winlogbeat
   win_stat:
-    path: "{{ install_dir }}"
+    path: '{{ install_dir }}'
   register: dir_info
 
 - name: Create dir to Winlogbeat
   win_file:
-    path: "{{ install_dir }}"\
+    path: '{{ install_dir }}\'
     state: directory
   when: dir_info.stat.exists == False
 
@@ -50,20 +50,20 @@
 
 - name: Stat Winlogbeat
   win_stat:
-    path: "{{ install_dir }}"\winlogbeat.exe
+    path: '{{ install_dir }}\winlogbeat.exe'
   register: exe_info
 
 - name: Move winlogbeat
   win_copy:
     src: C:\ansible_temp\winlogbeat-6.1.1-windows-x86_64\
-    dest: "{{ install_dir }}"\
+    dest: '{{ install_dir }}\'
     remote_src: True
   when: exe_info.stat.exists == False
 
 - name: Configure winlogbeat
   win_template:
     src: winlogbeat.yml.j2
-    dest: "{{ install_dir }}"\winlogbeat.yml
+    dest: '{{ install_dir }}\winlogbeat.yml'
 #  notify: restart winlogbeat
 
 - name: Create Winlogbeat Service
