@@ -12,6 +12,14 @@
   when: ansible_os_family == 'Debian'
   static: no 
 
+- include_tasks: setup-Ubuntu-16.04.yml
+  when: ansible_distribution_version == '16.04'
+  static: no
+
+- include_tasks: setup-Ubuntu-14.04.yml
+  when: ansible_distribution_version == '14.04'
+  static: no
+
 - include_tasks: setup-Windows.yml
   when: ansible_os_family == 'Windows'
   static: no 

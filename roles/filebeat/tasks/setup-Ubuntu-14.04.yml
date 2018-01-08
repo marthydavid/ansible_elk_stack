@@ -1,0 +1,7 @@
+- name: Template out service file
+  template:
+    src: filebeat.service.j2
+    dest: /lib/systemd/system/filebeat.service
+    owner: root
+    group: root
+    mode: 0664

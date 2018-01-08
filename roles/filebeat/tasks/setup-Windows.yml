@@ -58,8 +58,8 @@
 
 - name: Configure filebeat
   win_template:
-    src: filebeat.yml.j2
-    dest: '{{ filebeat_install_dir }}\filebeat.yml'
+    src: filebeat_win.yml.j2
+    dest: '{{ filebeat_install_dir }}\filebeat_win.yml'
 #  notify: restart filebeat
 
 - name: Create filebeat Service
