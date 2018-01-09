@@ -10,14 +10,6 @@
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
-  static: no 
-
-- include_tasks: setup-Ubuntu-16.04.yml
-  when: ansible_distribution_version == '16.04'
-  static: no
-
-- include_tasks: setup-Ubuntu-14.04.yml
-  when: ansible_distribution_version == '14.04'
   static: no
 
 - include_tasks: setup-Windows.yml
@@ -45,6 +37,16 @@
     owner: root
     group: root
     mode: 0750
+  notify: restart filebeat
+  when: ansible_os_family != 'Windows'
+
+- name: Template out service file
+  template:
+    src: filebeat.service.j2
+    dest: /lib/systemd/system/filebeat.service
+    owner: root
+    group: root
+    mode: 0664
   notify: restart filebeat
   when: ansible_os_family != 'Windows'
 
