@@ -1,0 +1,13 @@
+[Unit]
+Description=packetbeat
+Documentation=https://www.elastic.co/guide/en/beats/packetbeat/current/index.html
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/share/packetbeat/bin/packetbeat -c /etc/packetbeat/packetbeat.yml -path.home /usr/share/packetbeat -path.config /etc/packetbeat -path.data /var/lib/packetbeat -path.logs /var/log/packetbeat
+Restart=always
+CPUShares=512
+MemoryMax={{ beats_memory_max }}
+[Install]
+WantedBy=multi-user.target

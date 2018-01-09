@@ -33,6 +33,16 @@
     mode: 0750
   notify: restart metricbeat
 
+- name: Template out service file
+  template:
+    src: metricbeat.service.j2
+    dest: /lib/systemd/system/metricbeat.service
+    owner: root
+    group: root
+    mode: 0664
+  notify: restart metricbeat
+
+
 - include_tasks: setup-PostgreSQL.yml
   when: beats_pgsql_module_setup is defined and beats_pgsql_module_setup == 'true'
   static: no

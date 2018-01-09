@@ -32,3 +32,12 @@
     group: root
     mode: 0750
   notify: restart packetbeat
+
+- name: Template out service file
+  template:
+    src: packetbeat.service.j2
+    dest: /lib/systemd/system/packetbeat.service
+    owner: root
+    group: root
+    mode: 0664
+  notify: restart packetbeat
