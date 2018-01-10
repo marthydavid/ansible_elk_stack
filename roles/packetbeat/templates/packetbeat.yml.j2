@@ -61,7 +61,7 @@ packetbeat.protocols:
   {% if http_ports is defined %}
   ports:
   {% endif %}
-  {% for port in http_ports.iteritems() %}
+  {% for port in item.iteritems() %}
   - {{ port }}
   {% endfor %}
 
