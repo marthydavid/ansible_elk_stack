@@ -8,6 +8,6 @@ After=network-online.target
 ExecStart=/usr/share/filebeat/bin/filebeat -c /etc/filebeat/filebeat.yml -path.home /usr/share/filebeat -path.config /etc/filebeat -path.data /var/lib/filebeat -path.logs /var/log/filebeat
 Restart=always
 CPUShares=512
-MemoryMax={{ beats_memory_max }}
+MemoryLimit={{ beats_memory_max }}
 [Install]
 WantedBy=multi-user.target
