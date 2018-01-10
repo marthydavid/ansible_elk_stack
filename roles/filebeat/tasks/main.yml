@@ -50,18 +50,5 @@
   notify: restart filebeat
   when: ansible_os_family != 'Windows'
 
-- include_tasks: setup-Apache.yml
-  when: beats_apache_module_setup is defined and beats_apache_module_setup == 'true'
-  static: no
-
-- include_tasks: setup-PostgreSQL.yml
-  when: beats_pgsql_module_setup is defined and beats_pgsql_module_setup == 'true'
-  static: no
-
-- include_tasks: setup-MySQL.yml
-  when: beats_mysql_module_setup is defined and beats_mysql_module_setup == 'true'
-  static: no
-
-- include_tasks: setup-System.yml
-  when: beats_system_module_setup is defined and beats_system_module_setup == 'true'
+- include_tasks: setup-modules.yml
   static: no

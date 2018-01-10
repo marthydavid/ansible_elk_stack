@@ -1,0 +1,23 @@
+- include_tasks: modules/setup-PostgreSQL.yml
+  when: beats_pgsql_module_setup is defined and beats_pgsql_module_setup == 'true'
+  static: no
+
+- include_tasks: modules/setup-Apache.yml
+  when: beats_apache_module_setup is defined and beats_apache_module_setup == 'true'
+  static: no
+
+- include_tasks: modules/setup-MySQL.yml
+  when: beats_mysql_module_setup is defined and beats_mysql_module_setup == 'true'
+  static: no
+
+- include_tasks: modules/setup-MongoDB.yml
+  when: beats_mongodb_module_setup is defined and beats_mongodb_module_setup == "true"
+  static: no
+
+- include_tasks: modules/setup-System.yml
+  when: beats_system_module_setup is defined and beats_system_module_setup == 'true'
+  static: no
+
+- include_tasks: modules/setup-Ceph.yml
+  when: beats_ceph_module_setup is defined and beats_ceph_module_setup == 'true'
+  static: no
