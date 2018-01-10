@@ -12,3 +12,9 @@
   when: ansible_os_family == 'Debian'
   static: no 
 
+- name: Install Logstash package
+  package:
+    name: logstash
+    state: present
+
+- name: Configure logstash
