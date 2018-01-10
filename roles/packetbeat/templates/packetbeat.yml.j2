@@ -57,7 +57,13 @@ packetbeat.protocols:
 - type: http
   # Configure the ports where to listen for HTTP traffic. You can disable
   # the HTTP protocol by commenting out the list of ports.
-  ports: [80, 8080, 8000, 5000, 8002]
+  #ports: [80, 8080, 8000, 5000, 8002]
+  {% if http_ports is defined %}
+  ports:
+  {% endif %}
+  {% for port in http_ports.iteritems() %}
+  - {{ port }}
+  {% endfor %}
 
 - type: memcache
   # Configure the ports where to listen for memcache traffic. You can disable
