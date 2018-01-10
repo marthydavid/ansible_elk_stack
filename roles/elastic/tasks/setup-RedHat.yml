@@ -1,10 +1,10 @@
 ---
-- name: Add Elasticsearch GPG key.
+- name: Add Elastic.co GPG key.
   rpm_key:
     key: https://packages.elastic.co/GPG-KEY-elasticsearch
     state: present
 
-- name: Add Elasticsearch repository.
+- name: Add Elastic.co repository.
   copy:
     src: elasticsearch.repo
     dest: /etc/yum.repos.d/elasticsearch.repo
