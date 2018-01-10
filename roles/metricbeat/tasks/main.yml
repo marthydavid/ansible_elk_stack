@@ -56,7 +56,7 @@
   static: no
 
 - include_tasks: setup-MongoDB.yml
-  when: beats_mongodb_module_setup == "true"
+  when: beats_mongodb_module_setup is defined and beats_mongodb_module_setup == "true"
   static: no
 
 - include_tasks: setup-System.yml
