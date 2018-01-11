@@ -3,6 +3,6 @@
     path: /dev/sdb
   register: second_disk
 
-- include: create.yml
+- include_tasks: create.yml
   when: second_disk.stat.exists
   statis: no
