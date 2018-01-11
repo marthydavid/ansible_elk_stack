@@ -1,7 +1,7 @@
 - name: Create pv and vg
   lvg:
     vg: elastic
-    pvs: /dev/sdb
+    pvs: '{{ second_disk_path }}'
     pesize: 32
 
 - name: Create volume
