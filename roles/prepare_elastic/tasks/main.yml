@@ -33,6 +33,7 @@
     path: /opt/elastic-storage
     src: /dev/mapper/elastic-storage
     fstype: ext4
+    state: present
 
 - name: create dir for log and data
   file:
