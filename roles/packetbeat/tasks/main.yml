@@ -31,7 +31,7 @@
     owner: root
     group: root
     mode: 0750
-  with_items: http_ports
+  #with_items: http_ports
   notify: restart packetbeat
 
 - name: Template out service file
