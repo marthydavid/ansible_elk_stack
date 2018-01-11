@@ -3,17 +3,16 @@
     path: /dev/sdb
   register: second_disk
 
-#- name: Create pv and vg
-#  lvg:
-#    vg: elastic
-#    pvs: /dev/sdb
-#    pesize: 32
-#  when: second_disk.stat.exists
+- name: Create pv and vg
+  lvg:
+    vg: elastic
+    pvs: /dev/sdb
+    pesize: 32
+  when: second_disk.stat.exists
 
 - name: Create volume
   lvol:
     vg: elastic
     lv: storage
     size: +100%FREE
-    pvs: /dev/sdb
   when: second_disk.stat.exists
