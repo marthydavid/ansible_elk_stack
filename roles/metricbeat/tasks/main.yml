@@ -15,7 +15,7 @@
 - name: Install Metricbeat
   package:
     name: metricbeat
-    state: "{{ metricbeat_install | default(present) }}"
+    state: "{{ metricbeat_install }}"
   notify: Import Dashboard
 
 - name: Start Metricbeat
