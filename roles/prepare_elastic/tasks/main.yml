@@ -21,3 +21,25 @@
   filesystem:
     fstype: ext4
     dev: /dev/mapper/elastic-storage
+
+- name: Create /opt/elastic-storage
+  file:
+    path: /opt/elastic-storage
+    state: directory
+
+
+- name: mount fs
+  mount:
+    path: /opt/elastic-storage
+    src: /dev/mapper/elastic-storage
+    fstype: ext4
+
+- name: create dir for log and data
+  file:
+    path: /opt/elastic-storage/log
+    state: directory
+
+- name: create dir for log and data
+  file:
+    path: /opt/elastic-storage/data
+    state: directory
