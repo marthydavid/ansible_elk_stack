@@ -1,0 +1,18 @@
+- name: Stat /dev/vdb
+  stat:
+    path: /dev/vdb
+  register: second_disk
+
+#- name: Create pv and vg
+#  lvg:
+#    vg: elastic
+#    pvs: /dev/sdb
+#    pesize: 32
+#  when: second_disk.stat.exists
+
+- name: Create volume
+  lvol:
+    vg: elastic
+    lv: storage
+    size: 100%FULL
+  when: second_disk.stat.exists

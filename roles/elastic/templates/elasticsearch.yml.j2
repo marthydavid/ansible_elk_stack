@@ -21,7 +21,11 @@
 #
 # Use a descriptive name for the node:
 #
-#node.name: node-1
+{% if node is defined %}
+{% for name in node%}
+node.name: {{ name }}
+{% endfor%}
+{% for %}
 #
 # Add custom attributes to the node:
 #
@@ -31,7 +35,11 @@
 #
 # Path to directory where to store the data (separate multiple locations by comma):
 #
+{% if elasticsearch_data_path is defined %}
+path.data: {{ elasticsearch_data_path }}
+{% else %}
 path.data: /var/lib/elasticsearch
+{% endif %}
 #
 # Path to log files:
 #
