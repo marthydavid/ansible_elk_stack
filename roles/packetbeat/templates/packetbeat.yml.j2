@@ -36,7 +36,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for AMQP traffic. You can disable
   # the AMQP protocol by commenting out the list of ports.
 {% if amqp_ports is defined %}
-  ports: [5672]
+  ports: 
+{% for port in amqp_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [5672]
 {% endif %}
@@ -78,7 +81,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for memcache traffic. You can disable
   # the Memcache protocol by commenting out the list of ports.
 {% if memcache_ports is defined%}
-  ports: [11211]
+  ports:
+{% for port in memcache_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [11211]
 {% endif %}
@@ -87,7 +93,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for MySQL traffic. You can disable
   # the MySQL protocol by commenting out the list of ports.
 {% if mysql_ports is defined %}
-  ports: [3306]
+  ports: 
+{% for port in mysql_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [3306]
 {% endif %}
@@ -96,7 +105,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for Pgsql traffic. You can disable
   # the Pgsql protocol by commenting out the list of ports.
 {% if pgsql_ports is defined %}
-  ports: [5432]
+  ports: 
+{% for port in pgsql_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [5432]
 {% endif %}
@@ -106,7 +118,10 @@ packetbeat.protocols:
   # the Redis protocol by commenting out the list of ports.
 
 {% if redis_ports is defined %}
-  ports: [6379]
+  ports: 
+{% for port in redis_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [6379]
 {% endif %}
@@ -115,7 +130,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for Thrift-RPC traffic. You can disable
   # the Thrift-RPC protocol by commenting out the list of ports.
 {% if thrift_ports is defined %}
-  ports: [9090]
+  ports: 
+{% for port in thrift_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [9090]
 {% endif %}
@@ -124,7 +142,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for MongoDB traffic. You can disable
   # the MongoDB protocol by commenting out the list of ports.
 {% if mongodb_ports is defined %}
-  ports: [27017]
+  ports: 
+{% for port in mongodb_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [27017]
 {% endif %}
@@ -133,7 +154,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for NFS traffic. You can disable
   # the NFS protocol by commenting out the list of ports.
 {% if nfs_ports is defined %}
-  ports: [2049]
+  ports: 
+{% for port in nfs_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [2049]
 {% endif %}
@@ -142,7 +166,10 @@ packetbeat.protocols:
   # Configure the ports where to listen for TLS traffic. You can disable
   # the TLS protocol by commenting out the list of ports.
 {% if tls_ports is defined %}
-  ports: [443]
+  ports: 
+{% for port in tls_ports %}
+  - {{ port }}
+{% endfor %}
 {% else %}
   # ports: [443]
 {% endif %}
