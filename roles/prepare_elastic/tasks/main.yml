@@ -16,3 +16,8 @@
     lv: storage
     size: +100%FREE
   when: second_disk.stat.exists
+
+- name: create FS for the volume
+  filesystem:
+    fstype: ext4
+    dev: /dev/mapper/elastic-storage
