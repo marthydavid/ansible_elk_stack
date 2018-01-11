@@ -35,11 +35,19 @@ packetbeat.protocols:
 - type: amqp
   # Configure the ports where to listen for AMQP traffic. You can disable
   # the AMQP protocol by commenting out the list of ports.
+{% if amqp_ports is defined %}
   ports: [5672]
+{% else %}
+  # ports: [5672]
+{% endif %}
 
 - type: cassandra
   #Cassandra port for traffic monitoring.
+{% if cassandra_ports is defined %}
   ports: [9042]
+{% else %}
+  # ports: [9042]
+{% endif %}
 
 - type: dns
   # Configure the ports where to listen for DNS traffic. You can disable
@@ -57,53 +65,87 @@ packetbeat.protocols:
 - type: http
   # Configure the ports where to listen for HTTP traffic. You can disable
   # the HTTP protocol by commenting out the list of ports.
-  #ports: [80, 8080, 8000, 5000, 8002]
 {% if http_ports is defined %}
   ports:
 {% for port in http_ports %}
   - {{ port }}
 {% endfor %}
+{% else %}
+  # ports: [80, 8080, 8000, 5000, 8002]
 {% endif %}
 
 - type: memcache
   # Configure the ports where to listen for memcache traffic. You can disable
   # the Memcache protocol by commenting out the list of ports.
+{% if memcache_ports is defined%}
   ports: [11211]
+{% else %}
+  # ports: [11211]
+{% endif %}
 
 - type: mysql
   # Configure the ports where to listen for MySQL traffic. You can disable
   # the MySQL protocol by commenting out the list of ports.
+{% if mysql_ports is defined %}
   ports: [3306]
+{% else %}
+  # ports: [3306]
+{% endif %}
 
 - type: pgsql
   # Configure the ports where to listen for Pgsql traffic. You can disable
   # the Pgsql protocol by commenting out the list of ports.
+{% if pgsql_ports is defined %}
   ports: [5432]
+{% else %}
+  # ports: [5432]
+{% endif %}
 
 - type: redis
   # Configure the ports where to listen for Redis traffic. You can disable
   # the Redis protocol by commenting out the list of ports.
+
+{% if redis_ports is defined %}
   ports: [6379]
+{% else %}
+  # ports: [6379]
+{% endif %}
 
 - type: thrift
   # Configure the ports where to listen for Thrift-RPC traffic. You can disable
   # the Thrift-RPC protocol by commenting out the list of ports.
+{% if thrift_ports is defined %}
   ports: [9090]
+{% else %}
+  # ports: [9090]
+{% endif %}
 
 - type: mongodb
   # Configure the ports where to listen for MongoDB traffic. You can disable
   # the MongoDB protocol by commenting out the list of ports.
+{% if mongodb_ports is defined %}
   ports: [27017]
+{% else %}
+  # ports: [27017]
+{% endif %}
 
 - type: nfs
   # Configure the ports where to listen for NFS traffic. You can disable
   # the NFS protocol by commenting out the list of ports.
+{% if nfs_ports is defined %}
   ports: [2049]
+{% else %}
+  # ports: [2049]
+{% endif %}
 
 - type: tls
   # Configure the ports where to listen for TLS traffic. You can disable
   # the TLS protocol by commenting out the list of ports.
+{% if tls_ports is defined %}
   ports: [443]
+{% else %}
+  # ports: [443]
+{% endif %}
 
 #==================== Elasticsearch template setting ==========================
 
