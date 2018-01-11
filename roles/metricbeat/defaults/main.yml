@@ -2,6 +2,7 @@
 # defaults file for metricbeat
 beats_kibana_url: "http://localhost:5601"
 beats_elasticsearch_url: "http://localhost:9200"
+metricbeat_install: "present"
 beats_logging_level: error
 beats_pgsql_module_setup: false
 beats_pgsql_module_hosts: ''

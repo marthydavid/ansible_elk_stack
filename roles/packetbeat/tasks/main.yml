@@ -15,7 +15,7 @@
 - name: Install Packetbeat
   package:
     name: packetbeat
-    state: present
+    state: "{{ packetbeat_install | default(present) }}"
   notify: Import Dashboard
 
 - name: Start Packetbeat
