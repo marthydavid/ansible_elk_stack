@@ -1,6 +1,6 @@
 - name: Stat /dev/vdb
   stat:
-    path: /dev/vdb
+    path: /dev/sdb
   register: second_disk
 
 #- name: Create pv and vg
