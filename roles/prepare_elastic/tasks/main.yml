@@ -14,5 +14,5 @@
   lvol:
     vg: elastic
     lv: storage
-    size: +100%FULL
+    size: +100%FREE
   when: second_disk.stat.exists
