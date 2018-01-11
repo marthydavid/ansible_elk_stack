@@ -1,8 +1,8 @@
 - set_fact: second_disk_path=/dev/vdb
-  when: ansible_devices.vdb exists
+  when: ansible_devices.vdb is defined
 
 - set_fact: second_disk=/dev/sdb
-  when: ansible_devices.sdb exists
+  when: ansible_devices.sdb is defined
 - include_tasks: create.yml
-  when: ansible_devices.vbd exists or ansible_devices.sdb exists
+  when: ansible_devices.vbd is defined or ansible_devices.sdb is defined
   statis: no
