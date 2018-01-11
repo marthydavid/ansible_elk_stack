@@ -8,6 +8,6 @@ After=network-online.target
 ExecStart=/usr/share/packetbeat/bin/packetbeat -c /etc/packetbeat/packetbeat.yml -path.home /usr/share/packetbeat -path.config /etc/packetbeat -path.data /var/lib/packetbeat -path.logs /var/log/packetbeat
 Restart=always
 CPUShares=512
-MemoryLimit={{ beats_memory_max }}
+MemoryLimit={{ beats_memory_max | default(256M) }}
 [Install]
 WantedBy=multi-user.target
