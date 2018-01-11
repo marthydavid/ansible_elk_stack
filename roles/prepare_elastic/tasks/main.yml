@@ -3,44 +3,6 @@
     path: /dev/sdb
   register: second_disk
 
-- name: Create pv and vg
-  lvg:
-    vg: elastic
-    pvs: /dev/sdb
-    pesize: 32
+- include: create.yml
   when: second_disk.stat.exists
-
-- name: Create volume
-  lvol:
-    vg: elastic
-    lv: storage
-    size: +100%FREE
-  when: second_disk.stat.exists
-
-- name: create FS for the volume
-  filesystem:
-    fstype: ext4
-    dev: /dev/mapper/elastic-storage
-
-- name: Create /opt/elastic-storage
-  file:
-    path: /opt/elastic-storage
-    state: directory
-
-
-- name: mount fs
-  mount:
-    path: /opt/elastic-storage
-    src: /dev/mapper/elastic-storage
-    fstype: ext4
-    state: present
-
-- name: create dir for log and data
-  file:
-    path: /opt/elastic-storage/log
-    state: directory
-
-- name: create dir for log and data
-  file:
-    path: /opt/elastic-storage/data
-    state: directory
+  statis: no
