@@ -62,7 +62,7 @@ packetbeat.protocols:
   ports:
   {% endif %}
   {% for port in item %}
-  - {{ port.p }}
+  - {{ port }}
   {% endfor %}
 
 - type: memcache
