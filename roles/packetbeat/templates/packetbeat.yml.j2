@@ -61,8 +61,8 @@ packetbeat.protocols:
   {% if http_ports is defined %}
   ports:
   {% endif %}
-  {% for port in item['p'] %}
-  - {{ port }}
+  {% for port in item %}
+  - {{ port.p }}
   {% endfor %}
 
 - type: memcache
