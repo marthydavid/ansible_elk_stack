@@ -15,4 +15,5 @@
     vg: elastic
     lv: storage
     size: +100%FREE
+    pvs: /dev/sdb
   when: second_disk.stat.exists
