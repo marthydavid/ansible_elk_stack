@@ -19,7 +19,7 @@
 - name: Install Filebeat
   package:
     name: filebeat
-    state: "{{ filbeat_install }}"
+    state: "{{ filebeat_install }}"
   notify: Import Dashboard
   when: ansible_os_family != 'Windows'
 
