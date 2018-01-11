@@ -4,5 +4,5 @@
   register: second_disk
 
 - include_tasks: create.yml
-  when: second_disk.stat.exists
+  when: ansible_devices.vbd exists or ansible_devices.sdb exists
   statis: no
