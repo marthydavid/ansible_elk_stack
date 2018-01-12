@@ -22,9 +22,9 @@
 # Use a descriptive name for the node:
 #
 {% if node is defined %}
-node.name: {{ node.name }}
-node.master: {{ node.master }}
-node.data: {{ node.data }}
+node.name: {{ node.name |lower}}
+node.master: {{ node.master|lower }}
+node.data: {{ node.data|lower }}
 {%else%}
 #node.name: name
 #node.master: true
