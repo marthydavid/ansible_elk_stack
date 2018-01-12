@@ -18,6 +18,9 @@
 - name: Create /opt/elastic-storage
   file:
     path: '{{ create_elasticsearch_path }}'
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 755
     state: directory
 
 
