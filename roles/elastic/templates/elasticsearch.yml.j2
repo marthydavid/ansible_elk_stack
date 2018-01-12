@@ -22,10 +22,13 @@
 # Use a descriptive name for the node:
 #
 {% if node is defined %}
-{% for name in node%}
-node.name: {{ name }}
-{% endfor%}
-{% for %}
+node.name: {{ node.name }}
+{%else%}
+#node.name: name
+#node.master: true
+#node.data: true
+{%endif%}
+
 #
 # Add custom attributes to the node:
 #
@@ -61,7 +64,9 @@ path.logs: /var/log/elasticsearch
 #
 # Set the bind address to a specific IP (IPv4 or IPv6):
 #
-network.host: {{ elasticsearch_network_host }}
+network.host: 
+  - {{ elasticsearch_network_host }}
+  - {{ ansible_default_ipv4.address}}
 #
 # Set a custom port for HTTP:
 #
@@ -74,11 +79,21 @@ http.port: {{ elasticsearch_http_port }}
 # Pass an initial list of hosts to perform discovery when new node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
+{% if unicast_hosts is defined %}
+discovery.zen.ping.unicast.hosts:
+{%for host in unicast_hosts.host %}
+  - {{ host }}
+{% else %}
 #discovery.zen.ping.unicast.hosts: ["host1", "host2"]
+{% endif %}
 #
 # Prevent the "split brain" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):
 #
+{% if unicast_hosts is defined %}
+discover.zen.minimum_master_nodes: {{ unicast_hosts.minimum }}
+{% else %}
 #discovery.zen.minimum_master_nodes: 
+{% endif %}
 #
 # For more information, consult the zen discovery module documentation.
 #

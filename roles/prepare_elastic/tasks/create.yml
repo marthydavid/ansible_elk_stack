@@ -17,23 +17,23 @@
 
 - name: Create /opt/elastic-storage
   file:
-    path: /opt/elastic-storage
+    path: '{{ create_elasticsearch_path }}'
     state: directory
 
 
 - name: mount fs
   mount:
-    path: /opt/elastic-storage
+    path: '{{ create_elasticsearch_path }}'
     src: /dev/mapper/elastic-storage
     fstype: ext4
     state: present
 
 - name: create dir for log and data
   file:
-    path: /opt/elastic-storage/log
+    path: '{{ create_elasticsearch_log_path }}'
     state: directory
 
 - name: create dir for log and data
   file:
-    path: /opt/elastic-storage/data
+    path: '{{ create_elasticsearch_data_path }}'
     state: directory
