@@ -83,6 +83,7 @@ http.port: {{ elasticsearch_http_port }}
 discovery.zen.ping.unicast.hosts:
 {%for host in unicast_hosts.host %}
   - {{ host }}
+{% endfor %}
 {% else %}
 #discovery.zen.ping.unicast.hosts: ["host1", "host2"]
 {% endif %}
