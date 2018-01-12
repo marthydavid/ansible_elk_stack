@@ -6,7 +6,5 @@
 
 - include_tasks: create.yml
   when: ansible_devices.vbd is defined
-  static: no
 - include_tasks: create.yml
   when: ansible_devices.sdb is defined
-  static: no
