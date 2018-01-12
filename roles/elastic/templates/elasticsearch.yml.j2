@@ -23,6 +23,8 @@
 #
 {% if node is defined %}
 node.name: {{ node.name }}
+node.master: {{ node.master }}
+node.data: {{ node.data }}
 {%else%}
 #node.name: name
 #node.master: true
