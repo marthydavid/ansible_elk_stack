@@ -5,6 +5,5 @@
   when: ansible_devices.sdb is defined
 
 - include_tasks: "create.yml"
-  when: ansible_devices.vbd is defined
-- include_tasks: "create.yml"
-  when: ansible_devices.sdb is defined
+  when: second_disk_path is defined
+  static: no
