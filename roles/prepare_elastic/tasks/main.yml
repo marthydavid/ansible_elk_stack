@@ -3,7 +3,7 @@
 
 - set_fact: second_disk_path=/dev/sdb
   when: ansible_devices.sdb is defined
-  
+
 - include_tasks: create.yml
   when: ansible_devices.vbd is defined or ansible_devices.sdb is defined
-  statis: no
+  static: no
