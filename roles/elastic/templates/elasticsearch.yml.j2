@@ -66,7 +66,7 @@ path.logs: /var/log/elasticsearch
 #
 network.host: 
   - {{ elasticsearch_network_host }}
-#  - {{ ansible_default_ipv4.address}}
+  - {{ ansible_default_ipv4.address}}
 #
 # Set a custom port for HTTP:
 #
