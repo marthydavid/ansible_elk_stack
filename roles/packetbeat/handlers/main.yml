@@ -1,9 +1,9 @@
 ---
 # handlers file for packetbeat
-- name: restart packetbeat
-  service:
-    name: packetbeat
-    state: restarted
+#- name: restart packetbeat
+#  service:
+#    name: packetbeat
+#    state: restarted
 
 #- name: Import Dashboard
 #  command: packetbeat setup --dashboards
