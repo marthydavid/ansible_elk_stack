@@ -5,5 +5,5 @@
     name: packetbeat
     state: restarted
 
-- name: Import Dashboard
-  command: packetbeat setup --dashboards
+#- name: Import Dashboard
+#  command: packetbeat setup --dashboards
