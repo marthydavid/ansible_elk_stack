@@ -21,24 +21,24 @@
 - name: Start Packetbeat
   service: 
     name: packetbeat
-    state: started
-    enabled: yes
+    state: stopped
+    enabled: no
 
-- name: Configure Packetbeat
-  template:
-    src: packetbeat.yml.j2
-    dest: /etc/packetbeat/packetbeat.yml
-    owner: root
-    group: root
-    mode: 0750
-  #with_items: http_ports
-  notify: restart packetbeat
-
-- name: Template out service file
-  template:
-    src: packetbeat.service.j2
-    dest: /lib/systemd/system/packetbeat.service
-    owner: root
-    group: root
-    mode: 0664
-  notify: restart packetbeat
+#- name: Configure Packetbeat
+#  template:
+#    src: packetbeat.yml.j2
+#    dest: /etc/packetbeat/packetbeat.yml
+#    owner: root
+#    group: root
+#    mode: 0750
+#  #with_items: http_ports
+#  notify: restart packetbeat
+#
+#- name: Template out service file
+#  template:
+#    src: packetbeat.service.j2
+#    dest: /lib/systemd/system/packetbeat.service
+#    owner: root
+#    group: root
+#    mode: 0664
+#  notify: restart packetbeat
