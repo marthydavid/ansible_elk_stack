@@ -27,7 +27,7 @@
 - name: mount fs
   mount:
     path: '{{ create_elasticsearch_path }}'
-    src: /dev/mapper/elastic-storage
+    src: /dev/elastic/storage
     fstype: ext4
     state: present
 
