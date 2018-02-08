@@ -53,7 +53,8 @@
     state: started
     enabled: yes
   when: disk.stat not exists
-    - meta: flush_handlers
+
+- meta: flush_handlers
 #- name: Make sure Elasticsearch is running before proceeding
 #  wait_for: 
 #    host: '{{ elasticsearch_network_host }}' 
