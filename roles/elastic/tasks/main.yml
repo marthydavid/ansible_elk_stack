@@ -42,6 +42,7 @@
     state: stopped
     enabled: yes
 
+- meta: flush_handlers
 #- name: Make sure Elasticsearch is running before proceeding
 #  wait_for: 
 #    host: '{{ elasticsearch_network_host }}' 
