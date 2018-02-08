@@ -13,3 +13,9 @@
     group: elasticsearch
     mode: 0755
     state: directory
+
+- name: Stop Elasticsearch
+    service: 
+      name: elasticsearch 
+      state: started
+      enabled: yes
