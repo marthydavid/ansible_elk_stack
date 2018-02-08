@@ -42,7 +42,18 @@
     state: stopped
     enabled: yes
 
-- meta: flush_handlers
+- name: stat 
+  stat:
+    path: /dev/elastic/storage
+  register: disk
+
+- name: Start elasticsearch
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes
+  when: disk.stat not exists
+    - meta: flush_handlers
 #- name: Make sure Elasticsearch is running before proceeding
 #  wait_for: 
 #    host: '{{ elasticsearch_network_host }}' 
