@@ -12,8 +12,8 @@
 
 - name: create FS for the volume
   filesystem:
-    fstype: ext4
-    dev: /dev/mapper/elastic-storage
+    fstype: xfs
+    dev: /dev/elastic/storage
 
 - name: Create /opt/elastic-storage
   file:
@@ -31,18 +31,4 @@
     fstype: ext4
     state: present
 
-- name: create dir for log and data
-  file:
-    path: '{{ create_elasticsearch_log_path }}'
-    owner: root
-    group: root
-    mode: 0755
-    state: directory
 
-- name: create dir for log and data
-  file:
-    path: '{{ create_elasticsearch_data_path }}'
-    owner: root
-    group: root
-    mode: 0755
-    state: directory

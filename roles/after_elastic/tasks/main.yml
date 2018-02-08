@@ -1,0 +1,15 @@
+- name: create dir for log and data
+  file:
+    path: '{{ create_elasticsearch_log_path }}'
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0755
+    state: directory
+
+- name: create dir for log and data
+  file:
+    path: '{{ create_elasticsearch_data_path }}'
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0755
+    state: directory

@@ -36,10 +36,10 @@
     mode: 0660
   notify: restart elasticsearch
 
-- name: Start Elasticsearch
+- name: Stop Elasticsearch
   service: 
     name: elasticsearch 
-    state: started
+    state: stopped
     enabled: yes
 
 #- name: Make sure Elasticsearch is running before proceeding
