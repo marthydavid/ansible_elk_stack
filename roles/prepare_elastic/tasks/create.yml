@@ -14,7 +14,7 @@
   filesystem:
     fstype: xfs
     dev: /dev/elastic/storage
-    force: yes
+    #force: yes
 
 - name: Create /opt/elastic-storage
   file:
