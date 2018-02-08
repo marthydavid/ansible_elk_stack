@@ -52,7 +52,7 @@
     name: elasticsearch
     state: started
     enabled: yes
-  when: disk.stat not exists
+  when: not disk.stat.exists 
 
 - meta: flush_handlers
 #- name: Make sure Elasticsearch is running before proceeding
