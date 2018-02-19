@@ -1,0 +1,2 @@
+create_elasticsearch_log_path: "/opt/elastic-storage/log"
+create_elasticsearch_data_path: "/opt/elastic-storage/data"
