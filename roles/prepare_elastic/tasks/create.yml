@@ -29,7 +29,7 @@
   mount:
     path: '{{ create_elasticsearch_path }}'
     src: /dev/elastic/storage
-    fstype: ext4
+    fstype: xfs
     state: present
 
 
