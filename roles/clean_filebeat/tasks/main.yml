@@ -2,14 +2,13 @@
   file:
     state: absent
     path: /etc/filebeat
-    
+
 - name: remove /var/log/filebeat
   file:
     state: absent
     path: /var/log/filebeat
-  
+
 - name: remove /var/lib/filebeat
   file:
     state: absent
     path: /var/lib/filebeat
-  

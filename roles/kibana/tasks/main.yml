@@ -10,7 +10,7 @@
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
-  static: no 
+  static: no
 
 - name: Install Kibana package
   package:
@@ -36,6 +36,6 @@
 - name: Make sure Kibana is running before proceeding.
   wait_for: 
     host: localhost
-    port: '{{ kibana_server_port }}' 
+    port: '{{ kibana_server_port }}'
     delay: 3 
     timeout: 300

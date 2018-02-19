@@ -19,7 +19,7 @@
   notify: Import Dashboard
 
 - name: Start Metricbeat
-  service: 
+  service:
     name: metricbeat
     state: started
     enabled: yes

@@ -10,10 +10,10 @@
 
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
-  static: no 
+  static: no
 
 - name: Install ElasticSearch
-  package: 
+  package:
     name: '{{ item.name }}'
     state: '{{ item.state }}'
   with_items: '{{ packages }}'
@@ -37,12 +37,12 @@
   notify: restart elasticsearch
 
 - name: Stop Elasticsearch
-  service: 
+  service:
     name: elasticsearch 
     state: stopped
     enabled: yes
 
-- name: stat 
+- name: stat
   stat:
     path: /dev/elastic/storage
   register: disk
@@ -55,9 +55,3 @@
   when: not disk.stat.exists 
 
 - meta: flush_handlers
-#- name: Make sure Elasticsearch is running before proceeding
-#  wait_for: 
-#    host: '{{ elasticsearch_network_host }}' 
-#    port: '{{ elasticsearch_http_port }}' 
-#    delay: 3 
-#    timeout: 300

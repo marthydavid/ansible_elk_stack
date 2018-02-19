@@ -1,10 +1,5 @@
 ---
 # tasks file for filebeat
-
-#- include_tasks: setup-PSCX.yml
-#  when: ansible_os_family == 'Windows'
-#  static: no
-
 - name: Stat ansible_temp
   win_stat:
     path: C:\Windows\Temp
@@ -17,7 +12,7 @@
   when: temp_info.stat.exists == False
 
 - name: Download filebeat
-  win_get_url:  
+  win_get_url:
     url: '{{ filebeat_download_link }}'
     dest: C:\Windows\Temp\filebeat-6.1.1-windows-x86_64.zip
     force: no
@@ -60,7 +55,6 @@
   win_template:
     src: filebeat_win.yml.j2
     dest: '{{ filebeat_install_dir }}\filebeat_win.yml'
-#  notify: restart filebeat
 
 - name: Create filebeat Service
   win_service:

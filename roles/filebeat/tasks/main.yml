@@ -24,12 +24,12 @@
   when: ansible_os_family != 'Windows'
 
 - name: Start Filebeat
-  service: 
+  service:
     name: filebeat
     state: started
     enabled: yes
   when: ansible_os_family != 'Windows'
-  
+
 - name: Configure Filebeat
   template:
     src: filebeat.yml.j2

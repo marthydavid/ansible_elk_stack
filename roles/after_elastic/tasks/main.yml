@@ -16,6 +16,6 @@
 
 - name: Stop Elasticsearch
   service:
-    name: elasticsearch 
+    name: elasticsearch
     state: started
     enabled: yes
