@@ -2,4 +2,7 @@
 - hosts: localhost
   remote_user: root
   roles:
+    - after_elastic
+    - clean_filebeat
     - elastic
+    
