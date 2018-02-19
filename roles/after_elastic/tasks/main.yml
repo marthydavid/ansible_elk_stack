@@ -15,7 +15,7 @@
     state: directory
 
 - name: Stop Elasticsearch
-    service: 
-      name: elasticsearch 
-      state: started
-      enabled: yes
+  service:
+    name: elasticsearch 
+    state: started
+    enabled: yes
