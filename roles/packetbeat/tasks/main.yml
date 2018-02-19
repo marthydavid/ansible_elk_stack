@@ -19,7 +19,7 @@
   notify: Import Dashboard
 
 - name: Start Packetbeat
-  service: 
+  service:
     name: packetbeat
     state: stopped
     enabled: no

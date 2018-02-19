@@ -63,6 +63,6 @@
     description: "{{ filebeat_service_name }}"
 
 - name: Start Filebeat
-  win_service: 
+  win_service:
     name: filebeat
     state: started

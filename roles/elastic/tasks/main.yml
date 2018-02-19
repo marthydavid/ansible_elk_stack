@@ -38,7 +38,7 @@
 
 - name: Stop Elasticsearch
   service:
-    name: elasticsearch 
+    name: elasticsearch
     state: stopped
     enabled: yes
 
@@ -52,6 +52,6 @@
     name: elasticsearch
     state: started
     enabled: yes
-  when: not disk.stat.exists 
+  when: not disk.stat.exists
 
 - meta: flush_handlers

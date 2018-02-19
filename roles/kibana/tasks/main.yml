@@ -17,7 +17,7 @@
     name: kibana
     state: present
 
-- name: Start and enable Kibana 
+- name: Start and enable Kibana
   service:
     name: kibana
     state: started
@@ -34,8 +34,8 @@
 
 
 - name: Make sure Kibana is running before proceeding.
-  wait_for: 
+  wait_for:
     host: localhost
     port: '{{ kibana_server_port }}'
-    delay: 3 
+    delay: 3
     timeout: 300

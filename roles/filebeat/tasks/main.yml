@@ -14,7 +14,7 @@
 
 - include_tasks: setup-Windows.yml
   when: ansible_os_family == 'Windows'
-  static: no 
+  static: no
 
 - name: Install Filebeat
   package:

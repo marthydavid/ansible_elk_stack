@@ -1,10 +1,6 @@
 ---
 # tasks file for winlogbeat
 
-#- include_tasks: setup-System.yml
-#  when: ansible_os_family == 'Windows'
-#  static: no
-
 - include_tasks: setup-PSCX.yml
   when: ansible_os_family == 'Windows'
   static: no
@@ -21,7 +17,7 @@
   when: temp_info.stat.exists == False
 
 - name: Download winlogbeat
-  win_get_url:  
+  win_get_url:
     url: '{{ winlogbeat_download_link }}'
     dest: C:\Windows\Temp\winlogbeat-6.1.1-windows-x86_64.zip
     force: no
@@ -73,6 +69,6 @@
     description: "{{ winlogbeat_service_name }}"
 
 - name: Start winlogbeat
-  win_service: 
+  win_service:
     name: winlogbeat
-    state: started  
+    state: started
