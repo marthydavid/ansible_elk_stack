@@ -2,3 +2,13 @@
 - hosts: localhost
   remote_user: root
   roles:
+    - {role: after_elastic}
+    - {role: clean_filebeat}
+    - {role: elastic}
+    - {role: filebeat}
+    - {role: kibana}
+    - {role: logstash}
+    - {role: metricbeat}
+    - {role: packetbeat}
+    - {role: prepare_elastic}
+    - {role: winlogbeat}
