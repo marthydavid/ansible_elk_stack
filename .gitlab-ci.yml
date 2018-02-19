@@ -1,5 +1,6 @@
 image: marthydavid/ansible_lint:centos7
 test-CentOS:
+  stage: test
   script:
     - printf '[defaults]\nroles_path=./roles/' >ansible.cfg
     - ansible-lint tests/test.yml
@@ -7,6 +8,7 @@ test-CentOS:
 
 image: marthydavid/ansible_lint:alpine
 test-Alpine:
+  stage: test
   script:
     - printf '[defaults]\nroles_path=./roles/' >ansible.cfg
     - ansible-lint tests/test.yml
@@ -14,6 +16,7 @@ test-Alpine:
 
 image: marthydavid/ansible_lint:ubuntu16
 test-Ubuntu16:
+  stage: test
   script:
     - printf '[defaults]\nroles_path=./roles/' >ansible.cfg
     - ansible-lint tests/test.yml
@@ -21,6 +24,7 @@ test-Ubuntu16:
 
 image: marthydavid/ansible_lint:debian9
 test-Debian9:
+  stage: test
   script:
     - printf '[defaults]\nroles_path=./roles/' >ansible.cfg
     - ansible-lint tests/test.yml
