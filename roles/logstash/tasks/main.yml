@@ -18,3 +18,9 @@
     state: present
 
 - name: Configure logstash
+  template:
+    src: logstash.yml
+    dest: /etc/logstash/logstash.yml
+    owner: root
+    group: root
+    mode: 0750
